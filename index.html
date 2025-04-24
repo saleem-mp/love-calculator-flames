@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover your relationship compatibility with our fun FLAMES love calculator. Based on the popular FLAMES game (Friends, Lovers, Affectionate, Marriage, Enemies, Siblings).">
     <meta name="keywords" content="love calculator, flames game, relationship test, compatibility checker, love meter, friendship test">
-    <title>FLAMES Love Calculator | Relationship Compatibility Tool</title>
+    <title>Love Calculator Flames| Relationship Compatibility Tool</title>
     <style>
         :root {
             --primary-color: #ff6b6b;
@@ -312,6 +312,43 @@
             100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
         }
         
+        /* Keywords Section Styles */
+        .keywords-section {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .keywords-title {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .keyword {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #555;
+            transition: all 0.3s;
+        }
+        
+        .keyword:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
         /* Article Content Styles */
         .article-content {
             margin-top: 30px;
@@ -507,9 +544,10 @@
             
             <section class="content-section">
                 <article class="article-content">
-                    <h2>What is the FLAMES Love Calculator?</h2>
-                    <p>The FLAMES love calculator is a fun relationship compatibility test based on the popular FLAMES game that has been enjoyed by generations. FLAMES stands for Friends, Lovers, Affectionate, Marriage, Enemies, and Siblings - the six possible relationship outcomes between two people.</p>
+                    <h2>What is the Love Calculator FLAMES?</h2>
+                    <p>The love calculator FLAMES is a fun relationship compatibility test based on the popular FLAMES game that has been enjoyed by generations. FLAMES stands for Friends, Lovers, Affectionate, Marriage, Enemies, and Siblings - the six possible relationship outcomes between two people.</p>
                     
+                   
                     <h3>How Does the FLAMES Calculator Work?</h3>
                     <p>The FLAMES algorithm works by analyzing the letters in both names to determine your compatibility:</p>
                     <ul>
@@ -552,137 +590,28 @@
             </section>
         </div>
     </div>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Previous head content remains the same -->
-    <style>
-        /* Add this new CSS for tags section */
-        .tags-section {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
-        
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .tag {
-            background-color: #ff6b6b;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-        }
-        
-        .add-tag-form {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .add-tag-input {
-            flex-grow: 1;
-            padding: 8px 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-        }
-        
-        .add-tag-btn {
-            background-color: #ff4757;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        
-        .tag-remove {
-            margin-left: 8px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <!-- Previous body content remains the same until before footer -->
-
-    <!-- Add this new section before the footer -->
-    <div class="container">
-        <section class="tags-section">
-            <h2>Tags</h2>
-            <p>Add your own tags to categorize this content:</p>
-            
-            <div class="tags-container" id="tags-container">
-                <!-- Tags will be added here dynamically -->
-                <span class="tag">Love Calculator <span class="tag-remove">×</span></span>
-                <span class="tag">Relationship <span class="tag-remove">×</span></span>
-                <span class="tag">FLAMES Game <span class="tag-remove">×</span></span>
-            </div>
-            
-            <div class="add-tag-form">
-                <input type="text" class="add-tag-input" id="new-tag-input" placeholder="Add new tag...">
-                <button class="add-tag-btn" id="add-tag-btn">Add Tag</button>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer remains the same -->
-
-    <script>
-        // Add this new JavaScript for tags functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tagsContainer = document.getElementById('tags-container');
-            const newTagInput = document.getElementById('new-tag-input');
-            const addTagBtn = document.getElementById('add-tag-btn');
-            
-            // Function to add a new tag
-            function addTag(tagText) {
-                if (!tagText.trim()) return;
-                
-                const tagElement = document.createElement('span');
-                tagElement.className = 'tag';
-                tagElement.innerHTML = `
-                    ${tagText}
-                    <span class="tag-remove">×</span>
-                `;
-                
-                // Add remove functionality
-                tagElement.querySelector('.tag-remove').addEventListener('click', function() {
-                    tagElement.remove();
-                });
-                
-                tagsContainer.appendChild(tagElement);
-                newTagInput.value = '';
-            }
-            
-            // Add tag when button is clicked
-            addTagBtn.addEventListener('click', function() {
-                addTag(newTagInput.value);
-            });
-            
-            // Add tag when Enter is pressed
-            newTagInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    addTag(newTagInput.value);
-                }
-            });
-            
-            // Add remove functionality to existing tags
-            document.querySelectorAll('.tag-remove').forEach(removeBtn => {
-                removeBtn.addEventListener('click', function() {
-                    this.parentElement.remove();
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+     <!-- Keywords Section - Add your keywords here -->
+                    <div class="keywords-section">
+                        <h3 class="keywords-title">Popular Keywords</h3>
+                        <div class="keywords-list">
+                            <span class="keyword">love calculator</span>
+                            <span class="keyword">flames game</span>
+                            <span class="keyword">relationship test</span>
+                            <span class="keyword">compatibility checker</span>
+                            <span class="keyword">love meter</span>
+                            <span class="keyword">friendship test</span>
+                            <span class="keyword">love percentage</span>
+                            <span class="keyword">name compatibility</span>
+                            <span class="keyword">relationship predictor</span>
+                            <span class="keyword">love test</span>
+                            <span class="keyword">romance calculator</span>
+                            <span class="keyword">couple compatibility</span>
+                            <span class="keyword">love match</span>
+                            <span class="keyword">flames test</span>
+                            <span class="keyword">relationship status</span>
+                        </div>
+                    </div>
+                    
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -698,18 +627,9 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Other Tools</h3>
-                <ul>
-                    <li><a href="#">Love Percentage Calculator</a></li>
-                    <li><a href="#">Birthday Compatibility</a></li>
-                    <li><a href="#">Zodiac Match</a></li>
-                    <li><a href="#">Name Numerology</a></li>
-                </ul>
-            </div>
-        </div>
+         
         <div class="copyright">
-            &copy; 2023 FLAMES Calculator. All rights reserved. | For entertainment purposes only.
+            &copy; 2023 Love Calculator FLAMES. All rights reserved. | For entertainment purposes only.
         </div>
     </footer>
 
