@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover your relationship compatibility with our fun FLAMES love calculator. Based on the popular FLAMES game (Friends, Lovers, Affectionate, Marriage, Enemies, Siblings).">
+    <meta name="keywords" content="love calculator, flames game, relationship test, compatibility checker, love meter, friendship test">
+    <title>Love Calculator flames | Relationship Compatibility Tool</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff8e8e;
+            --accent-color: #ff4757;
+            --text-color: #333;
+            --light-color: #fff8f8;
+            --dark-color: #333;
+            --nav-bg: #fff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ff6b6b" opacity="0.1" d="M30,50 Q50,30 70,50 Q50,70 30,50"/></svg>');
+            background-size: 150px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--nav-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 15px 0;
+        }
+        
+        .logo span {
+            color: var(--dark-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 15px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .calculator-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+        
+        h3 {
+            color: var(--text-color);
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: block;
+            width: 100%;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff9f9;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .flames-letter {
+            font-size: 80px;
+            font-weight: 900;
+            margin: 20px 0;
+            color: var(--primary-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .interpretation {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .share-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .try-again {
+            margin-top: 20px;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .try-again:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .privacy-notice {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .heart-animation {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
+        }
+        
+        /* Article Content Styles */
+        .article-content {
+            margin-top: 30px;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .article-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .article-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                padding: 10px 0;
+                display: block;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .calculator-section, .content-section {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .flames-letter {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">FLAMES<span>Calculator</span></a>
+            <div class="hamburger">☰</div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About FLAMES</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <section class="calculator-section">
+                <h1>Love Calculator FLAMES</h1>
+                <p class="description">Enter your names to discover your relationship compatibility</p>
+                
+                <div class="input-group">
+                    <label for="your-name">Your Name</label>
+                    <input type="text" id="your-name" placeholder="Enter your name">
+                </div>
+                
+                <div class="input-group">
+                    <label for="partner-name">Partner's Name</label>
+                    <input type="text" id="partner-name" placeholder="Enter your partner's name">
+                </div>
+                
+                <button class="btn" id="calculate-btn">Calculate Compatibility</button>
+                
+                <div class="result-container" id="result-container">
+                    <div class="result-title">Your Relationship Result</div>
+                    <div class="flames-letter" id="flames-letter"></div>
+                    <div class="interpretation" id="interpretation"></div>
+                    
+                    <div class="share-buttons">
+                        <button class="share-btn" id="share-fb">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                            </svg>
+                            Facebook
+                        </button>
+                        <button class="share-btn" id="share-twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A3.328 3.328 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                            </svg>
+                            Twitter
+                        </button>
+                        <button class="share-btn" id="share-whatsapp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                            </svg>
+                            WhatsApp
+                        </button>
+                    </div>
+                    
+                    <button class="btn try-again" id="try-again">Try Again</button>
+                </div>
+                
+                <p class="privacy-notice">Note: Your names are used only for calculation and are not stored anywhere.</p>
+            </section>
+            
+            <section class="content-section">
+                <article class="article-content">
+                    <h2>What is the Love Calculator Flames?</h2>
+                    <p>The FLAMES love calculator is a fun relationship compatibility test based on the popular FLAMES game that has been enjoyed by generations. FLAMES stands for Friends, Lovers, Affectionate, Marriage, Enemies, and Siblings - the six possible relationship outcomes between two people.</p>
+                    
+                    <h3>How Does the FLAMES Calculator Work?</h3>
+                    <p>The FLAMES algorithm works by analyzing the letters in both names to determine your compatibility:</p>
+                    <ul>
+                        <li><strong>Step 1:</strong> Remove all common letters from both names</li>
+                        <li><strong>Step 2:</strong> Count the remaining letters</li>
+                        <li><strong>Step 3:</strong> Use this count to eliminate letters from the word "FLAMES" in sequence</li>
+                        <li><strong>Step 4:</strong> The remaining letter reveals your relationship outcome</li>
+                    </ul>
+                    
+                    <h3 id="about">About the FLAMES Game</h3>
+                    <p>FLAMES is a popular relationship prediction game that originated as a paper-and-pen game. It became especially popular among school children and teenagers as a fun way to explore potential relationships. While it's not scientifically validated, it remains an entertaining way to think about relationships and compatibility.</p>
+                    
+                    <h3>Understanding Your FLAMES Result</h3>
+                    <p>Each letter in FLAMES represents a different type of relationship:</p>
+                    <ul>
+                        <li><strong>F - Friends:</strong> A strong, trusting friendship</li>
+                        <li><strong>L - Lovers:</strong> Romantic connection with deep affection</li>
+                        <li><strong>A - Affectionate:</strong> Caring and warm relationship</li>
+                        <li><strong>M - Marriage:</strong> Potential for long-term commitment</li>
+                        <li><strong>E - Enemies:</strong> Possible conflicts or misunderstandings</li>
+                        <li><strong>S - Siblings:</strong> Brotherly/sisterly bond</li>
+                    </ul>
+                    
+                    <h3 id="privacy">Privacy Policy</h3>
+                    <p>We take your privacy seriously. Our FLAMES calculator processes your names only within your browser - we don't store, collect, or transmit any personal information to our servers. All calculations happen locally on your device, and your results are never saved or shared unless you choose to share them yourself.</p>
+                    
+                    <h3 id="contact">Contact Us</h3>
+                    <p>Have questions or feedback about our FLAMES love calculator? We'd love to hear from you! You can reach our team at <strong>contact@flamescalculator.com</strong> or connect with us on social media.</p>
+                    
+                    <h3>FAQs</h3>
+                    <p><strong>Q: Is the FLAMES calculator accurate?</strong><br>
+                    A: FLAMES is meant for entertainment purposes only. While it can be fun to see your result, it shouldn't be taken as a serious relationship predictor.</p>
+                    
+                    <p><strong>Q: Can I use nicknames?</strong><br>
+                    A: Yes! You can use full names, nicknames, or any combination you prefer. The calculator works with whatever names you choose to enter.</p>
+                    
+                    <p><strong>Q: Why do I get different results with the same names?</strong><br>
+                    A: Make sure you're entering the names exactly the same way each time, including spaces and special characters. Small differences can change the calculation.</p>
+                </article>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>FLAMES Calculator</h3>
+                <p>A fun tool to explore relationship compatibility based on the classic FLAMES game.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About FLAMES</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+        <div class="copyright">
+            &copy; 2023 LoveCalculator Flames. All rights reserved. | For entertainment purposes only.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculate-btn');
+            const tryAgainBtn = document.getElementById('try-again');
+            const resultContainer = document.getElementById('result-container');
+            const flamesLetter = document.getElementById('flames-letter');
+            const interpretation = document.getElementById('interpretation');
+            const yourNameInput = document.getElementById('your-name');
+            const partnerNameInput = document.getElementById('partner-name');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            
+            // Share buttons
+            const shareFb = document.getElementById('share-fb');
+            const shareTwitter = document.getElementById('share-twitter');
+            const shareWhatsapp = document.getElementById('share-whatsapp');
+            
+            // FLAMES interpretations
+            const flamesInterpretations = {
+                'F': {
+                    title: 'Friends',
+                    text: 'Ek mazboot aur bharosemand dosti ka rishta ban sakta hai. Aap dono mein gehri samajh aur vishwas hai jo ek sundar dosti ka aadhar hai.'
+                },
+                'L': {
+                    title: 'Lovers',
+                    text: 'Romance aur gehre pyaar ki sambhavna hai. Aap dono ke beech ek khaas jod hai jo pyaar aur romans se bhara hua hai.'
+                },
+                'A': {
+                    title: 'Affectionate',
+                    text: 'Ek dusre ke prati gehri chahat aur khayal rakhne wala rishta ho sakta hai. Aap dono mein mamta aur pyar ka anokha mel hai.'
+                },
+                'M': {
+                    title: 'Marriage',
+                    text: 'Jeevan bhar ka saath aur mazboot bandhan banne ke yog hain. Aap dono ek dusre ke liye perfect ho sakte hain aur ek sundar bhavishya bana sakte hain.'
+                },
+                'E': {
+                    title: 'Enemies',
+                    text: 'Shuruaati takraar ya galatfahmiyaan ho sakti hain, lekin sudhaar ki gunjaish hai. Thodi mehnat aur samajh se rishta sudhar sakta hai.'
+                },
+                'S': {
+                    title: 'Siblings',
+                    text: 'Aapas mein ek bhai-behan jaisa atoot aur care karne wala rishta rahega. Aap dono ek dusre ki hamesha madad karenge aur sath denge.'
+                }
+            };
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('#nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('show');
+                });
+            });
+            
+            // Calculate FLAMES compatibility
+            function calculateFlames(yourName, partnerName) {
+                // Remove spaces and convert to lowercase
+                const name1 = yourName.replace(/\s+/g, '').toLowerCase();
+                const name2 = partnerName.replace(/\s+/g, '').toLowerCase();
+                
+                // Count common letters
+                const countCommonLetters = (name1, name2) => {
+                    let count = 0;
+                    const name2Arr = name2.split('');
+                    
+                    for (let letter of name1) {
+                        const index = name2Arr.indexOf(letter);
+                        if (index !== -1) {
+                            count++;
+                            name2Arr.splice(index, 1);
+                        }
+                    }
+                    
+                    return count;
+                };
+                
+                const commonLetters = countCommonLetters(name1, name2) + countCommonLetters(name2, name1);
+                const totalLetters = name1.length + name2.length;
+                const remainingLetters = totalLetters - commonLetters;
+                
+                // FLAMES calculation
+                const flames = ['F', 'L', 'A', 'M', 'E', 'S'];
+                let currentIndex = 0;
+                let flamesArr = [...flames];
+                
+                while (flamesArr.length > 1) {
+                    currentIndex = (currentIndex + remainingLetters - 1) % flamesArr.length;
+                    flamesArr.splice(currentIndex, 1);
+                }
+                
+                return flamesArr[0];
+            }
+            
+            // Create heart animation
+            function createHeartAnimation() {
+                const heart = document.createElement('div');
+                heart.className = 'heart-animation';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.bottom = '-20px';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.animation = 'float 3s ease-out forwards';
+                }, 10);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+            
+            // Handle calculate button click
+            calculateBtn.addEventListener('click', function() {
+                const yourName = yourNameInput.value.trim();
+                const partnerName = partnerNameInput.value.trim();
+                
+                if (!yourName || !partnerName) {
+                    alert('Please enter both names');
+                    return;
+                }
+                
+                // Show loading effect
+                calculateBtn.disabled = true;
+                calculateBtn.textContent = 'Calculating...';
+                
+                // Create some heart animations
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(createHeartAnimation, i * 300);
+                }
+                
+                // Calculate after a small delay for animation
+                setTimeout(() => {
+                    const result = calculateFlames(yourName, partnerName);
+                    const interpretationData = flamesInterpretations[result];
+                    
+                    flamesLetter.textContent = result;
+                    interpretation.innerHTML = `<strong>${interpretationData.title}:</strong> ${interpretationData.text}`;
+                    
+                    resultContainer.style.display = 'block';
+                    calculateBtn.disabled = false;
+                    calculateBtn.textContent = 'Calculate Compatibility';
+                    
+                    // Scroll to result
+                    resultContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            });
+            
+            // Handle try again button
+            tryAgainBtn.addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                yourNameInput.value = '';
+                partnerNameInput.value = '';
+                yourNameInput.focus();
+            });
+            
+            // Handle share buttons
+            shareFb.addEventListener('click', function() {
+                const shareText = `Check out our FLAMES result: ${flamesLetter.textContent} - ${interpretation.text.substring(0, 50)}... #LoveCalculator`;
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`, '_blank');
+            });
+            
+            shareTwitter.addEventListener('click', function() {
+                const shareText = `Our FLAMES result is ${flamesLetter.textContent}! ${interpretation.text.substring(0, 70)}... #LoveCalculator`;
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+            });
+            
+            shareWhatsapp.addEventListener('click', function() {
+                const shareText = `Check out our FLAMES result: ${flamesLetter.textContent} - ${interpretation.text}\n\nSee yours at: ${window.location.href}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+            });
+            
+            // Allow pressing Enter in input fields to calculate
+            [yourNameInput, partnerNameInput].forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calculateBtn.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
