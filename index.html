@@ -552,7 +552,137 @@
             </section>
         </div>
     </div>
-    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Previous head content remains the same -->
+    <style>
+        /* Add this new CSS for tags section */
+        .tags-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        .add-tag-form {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-tag-input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .add-tag-btn {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .tag-remove {
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous body content remains the same until before footer -->
+
+    <!-- Add this new section before the footer -->
+    <div class="container">
+        <section class="tags-section">
+            <h2>Tags</h2>
+            <p>Add your own tags to categorize this content:</p>
+            
+            <div class="tags-container" id="tags-container">
+                <!-- Tags will be added here dynamically -->
+                <span class="tag">Love Calculator <span class="tag-remove">×</span></span>
+                <span class="tag">Relationship <span class="tag-remove">×</span></span>
+                <span class="tag">FLAMES Game <span class="tag-remove">×</span></span>
+            </div>
+            
+            <div class="add-tag-form">
+                <input type="text" class="add-tag-input" id="new-tag-input" placeholder="Add new tag...">
+                <button class="add-tag-btn" id="add-tag-btn">Add Tag</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer remains the same -->
+
+    <script>
+        // Add this new JavaScript for tags functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagsContainer = document.getElementById('tags-container');
+            const newTagInput = document.getElementById('new-tag-input');
+            const addTagBtn = document.getElementById('add-tag-btn');
+            
+            // Function to add a new tag
+            function addTag(tagText) {
+                if (!tagText.trim()) return;
+                
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.innerHTML = `
+                    ${tagText}
+                    <span class="tag-remove">×</span>
+                `;
+                
+                // Add remove functionality
+                tagElement.querySelector('.tag-remove').addEventListener('click', function() {
+                    tagElement.remove();
+                });
+                
+                tagsContainer.appendChild(tagElement);
+                newTagInput.value = '';
+            }
+            
+            // Add tag when button is clicked
+            addTagBtn.addEventListener('click', function() {
+                addTag(newTagInput.value);
+            });
+            
+            // Add tag when Enter is pressed
+            newTagInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addTag(newTagInput.value);
+                }
+            });
+            
+            // Add remove functionality to existing tags
+            document.querySelectorAll('.tag-remove').forEach(removeBtn => {
+                removeBtn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
     <footer>
         <div class="footer-container">
             <div class="footer-section">
