@@ -778,17 +778,6 @@
                 yourNameInput.focus();
             });
             
-            // Handle share buttons
-            shareFb.addEventListener('click', function() {
-                const shareText = `Check out our FLAMES result: ${flamesLetter.textContent} - ${interpretation.text.substring(0, 50)}... #LoveCalculator`;
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`, '_blank');
-            });
-            
-            shareTwitter.addEventListener('click', function() {
-                const shareText = `Our FLAMES result is ${flamesLetter.textContent}! ${interpretation.text.substring(0, 70)}... #LoveCalculator`;
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
-            });
-            
             shareWhatsapp.addEventListener('click', function() {
                 const shareText = `Check out our FLAMES result: ${flamesLetter.textContent} - ${interpretation.text}\n\nSee yours at: ${window.location.href}`;
                 window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
