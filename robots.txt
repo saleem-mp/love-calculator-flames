@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saleem-mp.github.io/love-calculator-flames/sitemap.xml
